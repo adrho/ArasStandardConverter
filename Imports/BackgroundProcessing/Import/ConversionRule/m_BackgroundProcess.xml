@@ -1,0 +1,10 @@
+﻿<AML>
+ <Item type="ConversionRule" id="AAEB615F6F7A4ACEBDEDF18A26C3A6B3" action="add">
+  <converter_type keyed_name="m_BackgroundProcess" type="ConverterType">DABF647E0A084ED08925D17383A41627</converter_type>
+  <cutoff>1</cutoff>
+  <delay>120</delay>
+  <enabled>1</enabled>
+  <timeout>60</timeout>
+  <name>m_BackgroundProcess</name>
+ </Item>
+</AML>

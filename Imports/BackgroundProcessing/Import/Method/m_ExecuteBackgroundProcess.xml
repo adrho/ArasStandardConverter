@@ -1,0 +1,171 @@
+﻿<AML>
+ <Item type="Method" id="4E74D7D13A6F480B9D4AB2C07992323B" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+			return BusinessLogic.Run(new DataAccessLayer(this.getInnovator()), this);
+		}
+		internal class BusinessLogic
+		{
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+			internal static Item Run(IDataAccessLayer dataAccessLayer, Item contextItem)
+			{
+				Item userDataItem = contextItem.getPropertyItem("m_background_user_data");
+				if (null == userDataItem)
+				{
+					return dataAccessLayer.newError("Error: No user data was filled in on the conversion task");
+				}
+				else
+				{
+					userDataItem = dataAccessLayer.apply(userDataItem, "get");
+				}
+				Item identityToNotify = userDataItem.getPropertyItem("owned_by_id");
+				if (null != identityToNotify)
+				{
+					identityToNotify = dataAccessLayer.apply(identityToNotify, "get");
+				}
+				string userData = userDataItem.getProperty("m_user_data", "");
+				string actionToRun = userDataItem.getProperty("m_action", "");
+				string applyMethod = userDataItem.getProperty("m_apply_method", "");
+
+				Item resultingEmail = userDataItem.getPropertyItem("m_email_message");
+				if (null != resultingEmail)
+				{
+					resultingEmail = dataAccessLayer.apply(resultingEmail, "get");
+				}
+				string emailBody = userDataItem.getProperty("m_success_email_body", "");
+				string emailSubject = userDataItem.getProperty("m_email_subject", "Result from background process");
+				string failWhenMethodFails = userDataItem.getProperty("m_fail_when_method_fails", "0");
+				string sendResultAsEmailBody = userDataItem.getProperty("m_send_result_as_email_body", "0");
+
+				try
+				{
+					Item result = null;
+					switch (applyMethod)
+					{
+						case "applyMethod":
+							result = dataAccessLayer.applyMethod(actionToRun, userData);
+							break;
+						case "apply":
+							Item loadItem = dataAccessLayer.newItem();
+							loadItem.loadAML(userData);
+							loadItem.setAction(actionToRun);
+							result = dataAccessLayer.apply(loadItem);
+							break;
+						default:
+							emailBody = String.Format(CultureInfo.InvariantCulture, "Internal error: m_apply_method value '{0}' did not match any supported application methods", applyMethod);
+							break;
+					}
+					if (result == null)
+					{
+						//No result, do nothing
+					}
+					else if (result.isError())
+					{
+						emailBody = result.getErrorString();
+						if (failWhenMethodFails.Equals("1"))
+						{
+							return result;
+						}
+					}
+					else if (result.getItemCount() == 1 && result.getItemByIndex(0).getType() == "File")
+					{
+						string url = dataAccessLayer.applyMethod("m_GetEmailUrl", "").getProperty("url", "");
+						string filename = result.getItemByIndex(0).getProperty("filename", "");
+						emailBody += String.Format(CultureInfo.InvariantCulture,
+							"<br/>A file has been generated and stored in Aras. <a href=\"{0}default.aspx?StartItem=File:{1}\">Click here to download / view the file {2}</a><br/>", url, result.getItemByIndex(0).getID(), filename);
+					}
+					else if (result.getItemCount() == 1 && result.getItemByIndex(0).getType() == "Email Message")
+					{
+						//If the method returns an email message, send that email
+						emailBody = result.getItemByIndex(0).getProperty("body_html", "");
+						emailSubject = result.getItemByIndex(0).getProperty("subject", "");
+					}
+					else if (sendResultAsEmailBody.Equals("1") && result.getItemCount() == -1 && !String.IsNullOrEmpty(result.getResult()))
+					{
+						//If the method returns a Result item, that result text becomes the body
+						emailBody = result.getResult();
+					}
+				}
+				catch (Aras.Server.Core.InnovatorServerException isex)
+				{
+					XmlDocument faultDoc = new XmlDocument();
+					isex.ToSoapFault(faultDoc);
+					Item faultItem = dataAccessLayer.newItem();
+					faultItem.loadAML(faultDoc.InnerXml);
+					emailBody = faultItem.getErrorString();
+					if (failWhenMethodFails.Equals("1"))
+					{
+						throw;
+					}
+				}
+				catch (Exception ex)
+				{
+					emailBody = ex.Message;
+					if (failWhenMethodFails.Equals("1"))
+					{
+						throw;
+					}
+				}
+				finally
+				{
+					if (null != identityToNotify && !identityToNotify.isError() && null != resultingEmail && !resultingEmail.isError())
+					{
+						resultingEmail.setProperty("body_html", String.Format(CultureInfo.InvariantCulture, "{0}{1}{2}{3}",
+							resultingEmail.getProperty("body_html", ""),
+							userDataItem.getProperty("m_email_header", ""),
+							emailBody.Replace("\r\n", "\r\n<br/>"),
+							userDataItem.getProperty("m_email_footer", "")));
+						resultingEmail.setProperty("subject", emailSubject);
+						dataAccessLayer.email(contextItem, resultingEmail, identityToNotify);
+					}
+				}
+
+				return contextItem;
+			}
+		}
+
+		internal interface IDataAccessLayer
+		{
+			Item newItem();
+			Item newError(string errorMessage);
+			Item apply(Item inputItem);
+			Item apply(Item inputItem, string action);
+			bool email(Item contextItem, Item emailItem, Item identityItem);
+			Item applyMethod(string action, string userData);
+		}
+
+		internal class DataAccessLayer : IDataAccessLayer
+		{
+			private Innovator _innovator;
+			internal DataAccessLayer(Innovator inn)
+			{
+				_innovator = inn;
+			}
+			public Item newItem()
+			{
+				return _innovator.newItem();
+			}
+			public Item newError(string errorMessage)
+			{
+				return _innovator.newError(errorMessage);
+			}
+			public Item apply(Item inputItem)
+			{
+				return inputItem.apply();
+			}
+			public Item apply(Item inputItem, string action)
+			{
+				return inputItem.apply(action);
+			}
+			public bool email(Item contextItem, Item emailItem, Item identityItem)
+			{
+				return contextItem.email(emailItem, identityItem);
+			}
+			public Item applyMethod(string action, string userData)
+			{
+				return _innovator.applyMethod(action, userData);
+			}]]></method_code>
+  <method_type>C#</method_type>
+  <name>m_ExecuteBackgroundProcess</name>
+ </Item>
+</AML>

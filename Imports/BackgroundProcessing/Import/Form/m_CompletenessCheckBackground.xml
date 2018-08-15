@@ -1,0 +1,80 @@
+﻿<AML>
+ <Item type="Form" id="631C31B8C8704FE3AE955AAB2E62C882" action="add">
+  <category_form>0</category_form>
+  <height>110</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>270</width>
+  <name>m_CompletenessCheckBackground</name>
+  <Relationships>
+   <Item type="Body" id="7D62C5ABB5E946D48220A70157954E13" action="add">
+    <sort_order>128</sort_order>
+    <source_id keyed_name="m_CompletenessCheckBackground" type="Form">631C31B8C8704FE3AE955AAB2E62C882</source_id>
+    <Relationships>
+     <Item type="Field" id="5CBA68017C9D498CAA26119858C44644" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<script>
+	CompletenessCheckAPI = function() { };
+
+	CompletenessCheckAPI.prototype.savePreferences = function() {
+		return document.querySelector('input[name="savePreference"]').checked;
+	};
+
+	CompletenessCheckAPI.prototype.runInForeground = function() {
+	   parent.args.dialog.result = [false, this.savePreferences()];
+	   //parent.args.dialog.close();
+	   parent.args.dialog.close(parent.args.dialog.result);
+	};
+
+	CompletenessCheckAPI.prototype.runInBackground= function() {
+	   parent.args.dialog.result = [true, this.savePreferences()];
+	   parent.args.dialog.close(parent.args.dialog.result);
+	};
+
+	API = new CompletenessCheckAPI();
+</script>
+<div class="ok_cancel_button">
+	<input id="ok_button" class="form_btn" type="button" value="Run in Browser" onclick="API.runInForeground();">
+	<input id="cancel_button" class="form_btn" type="button" value="Run in Background" onclick="API.runInBackground();">
+</div>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="7D62C5ABB5E946D48220A70157954E13" type="Body">7D62C5ABB5E946D48220A70157954E13</source_id>
+      <tab_stop>1</tab_stop>
+      <x>15</x>
+      <y>50</y>
+      <name>runButtons</name>
+     </Item>
+     <Item type="Field" id="CE4DA933166B4F4E9BEC743E629F3C46" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>checkbox</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Remember My Decision</label>
+      <label_position>right</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="7D62C5ABB5E946D48220A70157954E13" type="Body">7D62C5ABB5E946D48220A70157954E13</source_id>
+      <tab_stop>1</tab_stop>
+      <x>20</x>
+      <y>15</y>
+      <name>savePreference</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
