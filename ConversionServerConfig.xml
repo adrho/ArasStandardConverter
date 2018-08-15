@@ -1,0 +1,18 @@
+<configuration>
+  <configSections>
+    <!-- Common converter service configuration -->
+    <section name="ConversionServer" type="Aras.ConversionFramework.ConversionServer.Configuration.ConversionServerConfigurationSection" />
+    <sectionGroup name="ConverterSettings">
+      <!-- Place here class configuration section definitions for converters -->
+    </sectionGroup>
+  </configSections>
+  <ConversionServer>
+    <InnovatorServer url="{URL_INCLUDING_INNOVATORSERVER.ASPX}" />
+    <Converters>
+      <Converter name="m_BackgroundProcess" type="ArasStandardConverter.ArasStandardConverter, ArasStandardConverter" />
+    </Converters>
+  </ConversionServer>
+  <ConverterSettings>
+    <!-- Place here configuration sections for converters -->
+  </ConverterSettings>
+</configuration>

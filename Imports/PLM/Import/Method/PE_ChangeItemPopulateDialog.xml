@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Method" id="BECB059A9FB244D7B2654D48DA10BDB9" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[var list = document.getElementsByName("description_textarea");
+for(var i = 0; i < list.length; i++)
+{
+  if(list[i].tagName == "TEXTAREA")
+  {
+      list[i].value = parent.dialogArguments.message_string;
+  }
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>PE_ChangeItemPopulateDialog</name>
+ </Item>
+</AML>

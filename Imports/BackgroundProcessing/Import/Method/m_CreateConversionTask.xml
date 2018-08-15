@@ -1,0 +1,139 @@
+﻿<AML>
+ <Item type="Method" id="B62CFE65C1284BB9809BCEFDFA79EECE" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+			return BusinessLogic.Run(new DataAccessLayer(this.getInnovator()), this);
+		}
+		internal class BusinessLogic
+		{
+			internal static Item Run(IDataAccessLayer dataAccessLayer, Item contextItem)
+			{
+				string userData = contextItem.getProperty("userData", "");
+				string actionToRun = contextItem.getProperty("actionToRun", "");
+				string identityToNotify = contextItem.getProperty("identityToNotify", "");
+				string successEmailBody = contextItem.getProperty("successEmailBody", "");
+				string emailSubject = contextItem.getProperty("emailSubject", "");
+				string emailHeader = contextItem.getProperty("emailHeader", "");
+				string emailFooter = contextItem.getProperty("emailFooter", "");
+				string methodOfApplication = contextItem.getProperty("methodApplication", "");
+				string failConversionTaskWhenMethodFails = contextItem.getProperty("failConversionTaskWhenMethodFails", "");
+				string sendResultAsEmailBody = contextItem.getProperty("sendResultAsEmailBody", "");
+
+				var aml = "<AML>" +
+				"  <Item action='add' type='ConversionTask'>" +
+				"    <owned_by_id></owned_by_id>" +
+				"    <user_data>m_ExecuteBackgroundProcess</user_data>" +
+				"    <rule_id>AAEB615F6F7A4ACEBDEDF18A26C3A6B3</rule_id>" +
+				"    <status>NotStarted</status>" +
+				"    <Relationships>" +
+				"      <Item action='add' type='ConversionTaskEventHandler'>" +
+				"        <event_type>OnConvert</event_type>" +
+				"        <execution_attempt>0</execution_attempt>" +
+				"        <status>NotStarted</status>" +
+				"        <related_id>" +
+				"          <Item action='get' type='Method'>" +
+				"            <name>InvokeStandardConverterAsCreator</name>" +
+				"          </Item>" +
+				"        </related_id>" +
+				"      </Item>" +
+				"    </Relationships>" +
+				"    <m_background_user_data>" +
+				"      <Item action='add' type='m_BackgroundProcessUserData'>" +
+				"      </Item>" +
+				"    </m_background_user_data>" +
+				"  </Item>" +
+				"</AML>";
+
+				Item conversionTaskItem = dataAccessLayer.newItem("", "");
+				conversionTaskItem.loadAML(aml);
+				conversionTaskItem.setProperty("owned_by_id", identityToNotify);
+				Item userDataItem = conversionTaskItem.getPropertyItem("m_background_user_data");
+				userDataItem.setProperty("owned_by_id", identityToNotify);
+				if (!String.IsNullOrEmpty(actionToRun))
+				{
+					userDataItem.setProperty("m_action", actionToRun);
+				}
+				if (!String.IsNullOrEmpty(userData))
+				{
+					userDataItem.setProperty("m_user_data", userData);
+				}
+				if (!String.IsNullOrEmpty(successEmailBody))
+				{
+					userDataItem.setProperty("m_success_email_body", successEmailBody);
+				}
+				if (!String.IsNullOrEmpty(emailSubject))
+				{
+					userDataItem.setProperty("m_email_subject", emailSubject);
+				}
+				if (!String.IsNullOrEmpty(emailHeader))
+				{
+					userDataItem.setProperty("m_email_header", emailHeader);
+				}
+				if (!String.IsNullOrEmpty(emailFooter))
+				{
+					userDataItem.setProperty("m_email_footer", emailFooter);
+				}
+				if (!String.IsNullOrEmpty(methodOfApplication))
+				{
+					userDataItem.setProperty("m_apply_method", methodOfApplication);
+				}
+				if (!String.IsNullOrEmpty(failConversionTaskWhenMethodFails))
+				{
+					userDataItem.setProperty("m_fail_when_method_fails", failConversionTaskWhenMethodFails);
+				}
+				if(!String.IsNullOrEmpty(sendResultAsEmailBody))
+				{
+					userDataItem.setProperty("m_send_result_as_email_body", sendResultAsEmailBody);
+				}
+
+				dataAccessLayer.grantAdmin();
+				try
+				{
+					return dataAccessLayer.apply(conversionTaskItem);
+				}
+				finally
+				{
+					dataAccessLayer.revokeAdmin();
+				}
+			}
+		}
+		internal interface IDataAccessLayer
+		{
+			Item newItem(String type, String action);
+			Item apply(Item itemToApply);
+			void grantAdmin();
+			void revokeAdmin();
+		}
+		internal class DataAccessLayer : IDataAccessLayer
+		{
+			private Innovator _innovator;
+			private Aras.Server.Security.Identity adminIdentity;
+			private bool permissionWasSet = false;
+			internal DataAccessLayer(Innovator inn)
+			{
+				_innovator = inn;
+			}
+			public Item newItem(String type, String action)
+			{
+				return _innovator.newItem(type, action);
+			}
+			public Item apply(Item itemToApply)
+			{
+				return itemToApply.apply();
+			}
+			public void grantAdmin()
+			{
+				adminIdentity = Aras.Server.Security.Identity.GetByName("Conversion Manager");
+				permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(adminIdentity);
+			}
+			public void revokeAdmin()
+			{
+				if (permissionWasSet && null != adminIdentity)
+				{
+					Aras.Server.Security.Permissions.RevokeIdentity(adminIdentity);
+				}
+			}]]></method_code>
+  <method_type>C#</method_type>
+  <name>m_CreateConversionTask</name>
+ </Item>
+</AML>

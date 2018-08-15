@@ -1,0 +1,137 @@
+﻿<AML>
+ <Item type="Method" id="88C2283FD1664AAB9C51321624232F35" action="add">
+  <comments />
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+if (top.aras.isDirtyEx(inDom) || top.aras.isNew(inDom)) {
+	if (top.aras.confirm(top.aras.getResource('plm', 'changeitem.saveit'))) {
+		var tmpOnSaveCommand;
+		if (top.onSaveCommand) { tmpOnSaveCommand = top.onSaveCommand; }
+		if (top.main && top.main.work && top.main.work.onSaveCommand) { tmpOnSaveCommand = top.main.work.onSaveCommand; }
+		tmpOnSaveCommand();
+	} else {
+		return;
+	}
+}
+
+var mainItem = this;
+var wnd = function () {
+	var mainWnd = top.aras.getMainWindow();
+	return mainWnd === top ? mainWnd.main : top; 
+};
+
+var runInBackground = function() {
+	var itemKeyedName = mainItem.getProperty('keyed_name', '');
+	var title = mainItem.getProperty('title', '');
+	var url = aras.IomInnovator.applyMethod('m_GetEmailUrl').getProperty('url', '');
+	var type = mainItem.getType();
+	var id = mainItem.getID();
+	var emailHeader = '<BODY>' +
+		'<p><span class="cl1">Check for Completeness result for <a href="' + url + 'default.aspx?StartItem=' + type + ':' + id + '">' +
+		itemKeyedName + '</a>: ' + title + '</span><br/></p>' +
+		'<p><span class="cp1">RESULT: </span></br>';
+	var emailFooter = '</p></BODY>';
+	var methodToRun = aras.newIOMItem('Method', 'm_CreateConversionTask');
+	methodToRun.setProperty('userData', inDom.xml);
+	methodToRun.setProperty('identityToNotify', aras.getIsAliasIdentityIDForLoggedUser());
+	methodToRun.setProperty('actionToRun', 'PE_ChangeItemTransition');
+	methodToRun.setProperty('emailSubject', 'Check for Completeness result: ' + ': ' + itemKeyedName);
+	methodToRun.setProperty('emailHeader', emailHeader);
+	methodToRun.setProperty('emailFooter', emailFooter);
+	methodToRun.setProperty('successEmailBody', aras.getResource('plm', 'changeitem.completenesschecksucceeded', inDom.getAttribute('type')));
+	methodToRun = methodToRun.apply();
+	if (methodToRun.isError()) {
+		aras.AlertError(methodToRun);
+	} else {
+		aras.AlertSuccess('Your background request has been queued. You will receive an email when it is completed.');
+	}
+};
+
+var runInForeground = function() {
+	var aml = '<Item type="Method" action="PE_ChangeItemTransition">' + inDom.xml + '</Item>';
+	var soapRes = top.aras.soapSend('ApplyMethod', aml);
+	var messageString;
+	if (soapRes.getFaultCode() !== 0) {
+		messageString = soapRes.getFaultString();
+	} else {
+		messageString = top.aras.getResource('plm', 'changeitem.completenesschecksucceeded', inDom.getAttribute('type'));
+	}
+
+	var param = {};
+	param.title  = 'Completeness Check Results';
+	param.aras   = top.aras;
+	param.message_string = messageString;
+
+	var form = top.aras.getItemByName('Form', 'PE_ChangeItemValidationDialog', 'width,height');
+
+	var width  = top.aras.getItemProperty(form, 'width');
+	var height = top.aras.getItemProperty(form, 'height');
+	if (!width) { width  = 600; }
+	if (!height) { height = 250; }
+
+	param.formId = form.getAttribute('id');
+	var options = {
+		dialogWidth: width,
+		dialogHeight: height
+	};
+
+	param.dialogWidth = width;
+	param.dialogHeight = height;
+	param.content = 'ShowFormAsADialog.html';
+	var topWnd = top.aras.getMostTopWindowWithAras(window);
+	(topWnd.main || topWnd).ArasModules.Dialog.show("iframe", param);
+};
+
+var currentPreferences = aras.getPreferenceItem('m_BackgroundPreferences');
+var currentSetting = aras.getItemProperty(currentPreferences, 'm_completeness');
+
+if (currentSetting === 'background') {
+	runInBackground();
+	return;
+} else if (currentSetting === 'foreground') {
+	runInForeground();
+	return;
+}
+
+var fetchForm = aras.newIOMItem('Form', 'get');
+fetchForm.setProperty('name','m_CompletenessCheckBackground');
+fetchForm.setAttribute('select', 'width,height');
+fetchForm = fetchForm.apply('get');
+
+var param = {
+	formId: fetchForm.getID(),
+	aras: aras
+};
+var callbackFunc = function(res) {
+	if (typeof res === 'undefined') { 
+		return; 
+	}
+
+	var backgroundProcess = res[0] ? 'background' : 'foreground';
+	var savePreferences = res[1];
+	if (savePreferences === true) {
+		var serialized = {
+			m_completeness: backgroundProcess
+		};
+		aras.setPreferenceItemProperties('m_BackgroundPreferences', '', serialized);
+		aras.savePreferenceItems();
+		alert('Your preferences are saved. To reset your preferences, use the Action "Reset preferences"');
+	}
+	if (backgroundProcess === 'background') { 
+		runInBackground();
+		return;
+	}
+
+	runInForeground();
+};
+
+param.dialogWidth = fetchForm.getProperty('width','100');
+param.dialogHeight = fetchForm.getProperty('height','100');
+param.content = 'ShowFormAsADialog.html';
+var topWnd = top.aras.getMostTopWindowWithAras(window);
+(topWnd.main || topWnd).ArasModules.Dialog.show("iframe", param).promise.then(callbackFunc);
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>PE_CompletenessCheck</name>
+ </Item>
+</AML>

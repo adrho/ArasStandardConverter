@@ -1,0 +1,242 @@
+﻿<AML>
+ <Item type="ItemType" id="999F23DA677D4948AFDA131761A67D56" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>M_BACKGROUNDPROCESSUSERDATA</instance_data>
+  <is_dependent>1</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label xml:lang="en">Background Process User Data</label>
+  <label_plural xml:lang="en">Background Process User Data</label_plural>
+  <maxrecords>25</maxrecords>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs off</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>m_BackgroundProcessUserData</name>
+  <Relationships>
+   <Item type="Property" id="E1FBF058EE13462F9F9C9AB3211AE64C" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Action</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3584</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <stored_length>256</stored_length>
+    <track_history>0</track_history>
+    <name>m_action</name>
+   </Item>
+   <Item type="Property" id="7DE3EAC609134855ABC351E9A80A86C7" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <default_value xml:lang="en">applyMethod</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Technique to Apply</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3712</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <stored_length>256</stored_length>
+    <track_history>0</track_history>
+    <name>m_apply_method</name>
+   </Item>
+   <Item type="Property" id="38515D35690A4882816C9BFD9ED8EF0F" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Email Footer</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3968</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <stored_length>1024</stored_length>
+    <track_history>0</track_history>
+    <name>m_email_footer</name>
+   </Item>
+   <Item type="Property" id="6970F2503B3C4E948A40362C269A47D4" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Email Header</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3840</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_email_header</name>
+   </Item>
+   <Item type="Property" id="85739A3E15BC44759AD828748962C3FB" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="EMail Message" type="ItemType" name="EMail Message">F91DE6AE038A4CC8B53D47D5A7FA49FC</data_source>
+    <data_type>item</data_type>
+    <default_value xml:lang="en">0D5DDD35E9244F8BB40403348863C6B6</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Email Message</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3072</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_email_message</name>
+   </Item>
+   <Item type="Property" id="578BD7E3357149DEAE64589D58908686" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <default_value xml:lang="en">Result from Background Processing</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">m_email_subject</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3456</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <stored_length>1024</stored_length>
+    <track_history>0</track_history>
+    <name>m_email_subject</name>
+   </Item>
+   <Item type="Property" id="604FF754854440E7A49645BC7C0A2900" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>boolean</data_type>
+    <default_value xml:lang="en">0</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Fail Conversion Task When Method Fails</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>4096</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_fail_when_method_fails</name>
+   </Item>
+   <Item type="Property" id="1689A8BFA73F458EB3F64CCF3D7D2835" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>boolean</data_type>
+    <default_value xml:lang="en">0</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Send Result From Processing As Email Body</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>4224</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_send_result_as_email_body</name>
+   </Item>
+   <Item type="Property" id="BAD27D7581FF4404ABC44AC851E69581" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Success Email Body</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3328</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_success_email_body</name>
+   </Item>
+   <Item type="Property" id="DE1BE6F5EE714037B4384BF6D70E30BF" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">User Data</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3200</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>m_user_data</name>
+   </Item>
+   <Item type="Can Add" id="100906FD4D7E48AD809DA07A8562790E" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="Conversion Manager" type="Identity">694C8B27E5D940DAA8BD336E45EC3A63</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="32E03669843B43ABA0334271CD180B93" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="Converters Access" type="Permission">6976E27E154B4355BBB28CA7F69A276F</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="999F23DA677D4948AFDA131761A67D56" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='999F23DA677D4948AFDA131761A67D56' and name='owned_by_id'">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Identity To Notify</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</source_id>
+    <track_history>0</track_history>
+    <name>owned_by_id</name>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="View" action="delete" where="source_id='999F23DA677D4948AFDA131761A67D56'" />
+ <Item type="Form" action="delete" where="name='m_BackgroundProcessUserData'" />
+</AML>

@@ -1,0 +1,7 @@
+<imports>
+  <package name="BackgroundProcessing" path="BackgroundProcessing\Import" />
+  <package name="com.aras.innovator.solution.PLM" path="PLM\Import"/>
+  <package name="com.aras.innovator.conversion" path=".\">
+    <dependson name="com.aras.innovator.exchange" />
+  </package>
+</imports>

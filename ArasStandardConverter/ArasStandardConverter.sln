@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArasStandardConverter", "ArasStandardConverter.csproj", "{775E0E31-CAA3-4353-86D4-245370C919C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Aras Innovator = Debug|Aras Innovator
+		Release|Aras Innovator = Release|Aras Innovator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{775E0E31-CAA3-4353-86D4-245370C919C8}.Debug|Aras Innovator.ActiveCfg = Debug|Aras Innovator
+		{775E0E31-CAA3-4353-86D4-245370C919C8}.Debug|Aras Innovator.Build.0 = Debug|Aras Innovator
+		{775E0E31-CAA3-4353-86D4-245370C919C8}.Release|Aras Innovator.ActiveCfg = Release|Aras Innovator
+		{775E0E31-CAA3-4353-86D4-245370C919C8}.Release|Aras Innovator.Build.0 = Release|Aras Innovator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60CCC4D8-41EB-4BAD-BD38-244CB4DCEB15}
+	EndGlobalSection
+EndGlobal

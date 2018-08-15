@@ -1,0 +1,14 @@
+﻿<AML>
+ <Item type="ConversionServer" id="2176FBC55A474640A84B7217BD3DBAF6" action="add">
+  <impersonation_user_id keyed_name="Super User" type="User">AD30A6D8D3B642F5A2AFED1A4B02BEFA</impersonation_user_id>
+  <url>$[HTTP_PREFIX_SERVER]$[HTTP_HOST_SERVER]$[HTTP_PORT_SERVER]$[HTTP_PATH_SERVER]/ConversionServer/ConversionService.asmx</url>
+  <name>Default</name>
+  <Relationships>
+   <Item type="ConversionServerConverterType" id="B3C89E4DBB294E9185B6CEB4B50006F5" action="add">
+    <related_id keyed_name="m_BackgroundProcess" type="ConverterType">DABF647E0A084ED08925D17383A41627</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Default" type="ConversionServer">2176FBC55A474640A84B7217BD3DBAF6</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

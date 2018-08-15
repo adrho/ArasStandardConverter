@@ -1,0 +1,244 @@
+﻿<AML>
+ <Item type="ItemType" id="0300B828CBEE4610B77C41377209C900" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>CONVERSIONTASK</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label xml:lang="en">Conversion Task</label>
+  <label_plural xml:lang="en">Conversion Tasks</label_plural>
+  <large_icon>../images/ConversionTask.svg</large_icon>
+  <open_icon>../images/ConversionTask.svg</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>ConversionTask</name>
+  <Relationships>
+   <Item type="Property" id="D5C197E3BDB84E9980CB6BBCE5AD997F" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Error</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>6912</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>error</name>
+   </Item>
+   <Item type="Property" id="8F884E21EFB34E859E2CAE20E104929D" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">File</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3712</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>file_id</name>
+   </Item>
+   <Item type="Property" id="1DC55FF59BD741B68BAB0694D17FB5ED" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="FileType" type="ItemType" name="FileType">13EC84A626F1457BB5F60A13DA03580B</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">File Type</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3584</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>file_type</name>
+   </Item>
+   <Item type="Property" id="A60E85D607BB4054AC6B95E8C5B1D6FC" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Finished On</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>7040</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>finished_on</name>
+   </Item>
+   <Item type="Property" id="C7C85DA484AE4677AD93AAB4E09B4D9D" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="m_BackgroundProcessUserData" type="ItemType" name="m_BackgroundProcessUserData">999F23DA677D4948AFDA131761A67D56</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">User Data Item</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>7296</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>m_background_user_data</name>
+   </Item>
+   <Item type="Property" id="2034943EDBAD46EFA2479F1E8FE216A1" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="ConversionRule" type="ItemType" name="ConversionRule">05DF56FF833542F98251528F3FFE2FA0</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Rule</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3328</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>rule_id</name>
+   </Item>
+   <Item type="Property" id="34089204182E4B1F8CCCED39A0D2B49B" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Started On</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3200</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>started_on</name>
+   </Item>
+   <Item type="Property" id="142181E9403444E4A063918E5F7D915F" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="ConversionStatus">3FC9F34D1D2248F8B567F9428DCB8B64</data_source>
+    <data_type>list</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Status</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>7168</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <stored_length>64</stored_length>
+    <track_history>0</track_history>
+    <name>status</name>
+   </Item>
+   <Item type="Property" id="2D5A0ADC369B411F88E7DF2B5354436D" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">User Data</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3840</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <track_history>0</track_history>
+    <name>user_data</name>
+   </Item>
+   <Item type="View" id="793B5F6126A1417896CF88DE979F606E" action="add">
+    <client>js</client>
+    <related_id keyed_name="ConversionTask" type="Form">A1C5845AEAA8490BAD4F10B5D1959A2A</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="Server Event" id="76583D40072C4CEEA70C1D068989F2B8" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="OnAfterAddConversionTask" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>OnAfterAddConversionTask</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+   </Item>
+   <Item type="Server Event" id="C724FB322C8C4D568D8944A9A772F63F" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SetUserAliasIdentityToOwnedBy" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SetUserAliasIdentityToOwnedBy</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+   </Item>
+   <Item type="TOC Access" id="0A946C2BC33C4254B4935D9028DA101E" action="add">
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+    <category>Administration/File Handling</category>
+   </Item>
+   <Item type="Can Add" id="5E27CD6A533945BCAC95818E0603C52F" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="Conversion Manager" type="Identity">694C8B27E5D940DAA8BD336E45EC3A63</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="CAE31DDF618043C488AE4A131E91033D" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="Converters Access" type="Permission">6976E27E154B4355BBB28CA7F69A276F</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="ConversionTask" type="ItemType" name="ConversionTask">0300B828CBEE4610B77C41377209C900</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
